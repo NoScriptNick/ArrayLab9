@@ -5,33 +5,36 @@ public class PartTwo {
         Scanner scan = new Scanner(System.in);
 
         int [] dataPoints = new int [100];
-        int sum = 0;
-        int avg = 0;
-        int max = 0;
-        int min = 101;
 
         for (int i = 0; i < dataPoints.length; i++) {
             dataPoints[i] = (int)(Math.random() * 100) + 1;
         }
 
-        for (int i = 0; i < dataPoints.length; i++) {
-            System.out.print(dataPoints[i] + " | ");
-        }
+        int num = InputHelper.getRangedInt(scan, "Please enter an integer: ", 1, 100);
+        int count = 0;
 
         for (int i = 0; i < dataPoints.length; i++) {
-            sum += dataPoints[i];
-            avg = sum/100;
-            if (dataPoints[i] > max) {
-                max = dataPoints[i];
-            }
-            if (dataPoints[i] < min) {
-                min = dataPoints[i];
+            if (dataPoints[i] == num) {
+                count++;
             }
         }
-        System.out.println("");
-        System.out.println("Sum: " + sum);
-        System.out.println("Average: " + avg);
-        System.out.println("Max: " + max);
-        System.out.println("Min: " + min);
+        System.out.println(num + " appears " + count + " times in the array.");
+
+        num = InputHelper.getRangedInt(scan, "Please enter another integer: ", 1, 100);
+
+        int index = -1;
+
+        for (int i = 0; i < dataPoints.length; i++) {
+            if (dataPoints[i] == num) {
+                index = i;
+                break;
+            }
+        }
+
+        if (index == -1) {
+            System.out.println(num + " was not found in the array");
+        } else {
+            System.out.println(num + " appears at index " + index);
+        }
     }
 }
